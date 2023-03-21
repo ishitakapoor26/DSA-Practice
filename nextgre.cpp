@@ -78,3 +78,11 @@ int main(){
     st.next_gre();
     return 0;
 }
+
+// Alternative Approach:
+// Run the loop in reverse order. Push the first element. Pop if the elements present in the stack are smaller than incoming element. Now print the answer at the top. Now push this element and so on..
+// -
+// a
+// +
+
+// (Revisit): Good question
