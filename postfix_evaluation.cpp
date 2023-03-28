@@ -6,14 +6,18 @@ class Stack
 private:
     int top1;
     int top2;
+    int pre_top;
+    int in_top;
     int size;
     char *op{new char[size]};
     int *nd{new int[size]};
+    string *infix{new string[50]};
+    string *prefix{new string[50]};
 
 public:
     Stack(int n=10)
     {
-        top1 = top2 = -1;
+        top1 = top2 = pre_top= in_top= -1;
         size = n;
     }
 
@@ -165,10 +169,7 @@ public:
         return nd[top2];
     }
 
-    string postfix_to_infix(char *exp){
-        
-    }
-};
+   };
 
 int main(){
      string exp;
