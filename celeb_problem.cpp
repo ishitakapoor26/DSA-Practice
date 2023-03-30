@@ -1,45 +1,57 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+#include <vector>
 
-class Stack{
-    private:
-    int top;
-    int *row{new int[5]};
-    int *col{new int[5]};
-    public:
-
-    Stack(){
-        top=-1;
-    }
-
-    
-
-    void push(int i){
-        if(isFull()){
-            return;
-        }else{
-            top++;
-            
-        }
-    }
-
-    int celebrity_problem(int arr[5][5]){
-        for(int i=0;i<5;i++){
-            for(int j=0;j<5;j++){
-
+class Solution
+{
+public:
+    int celebrity(vector<vector<int>> &M, int n)
+    {
+        vector<int> knows(n, 0);
+        vector<int> known(n, 0);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (M[i][j] != 0)
+                {
+                    knows[i]++;
+                }
+                if (M[j][i] == 1 && j != i)
+                {
+                    known[i]++;
+                }
             }
         }
+        int ans = -1;
+        for (int i = 0; i < n; i++)
+        {
+            if (knows[i] == 0 && known[i] == n - 1)
+            {
+                ans = i;
+            }
+        }
+        return ans;
     }
 };
 
-int main(){
-    int arr[5][5];
-    for(int i=0;i<5;i++){
-        for(int j=0;i<5;i++){
-            cin>>arr[i][j];
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<vector<int>> M(n, vector<int>(n, 0));
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                cin >> M[i][j];
+            }
         }
+        Solution ob;
+        cout << ob.celebrity(M, n) << endl;
     }
-    Stack st;
-    st.celebrity_problem(arr);
-    return 0;
 }
