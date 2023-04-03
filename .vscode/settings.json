@@ -3,6 +3,7 @@
         "iostream": "cpp",
         "cmath": "cpp",
         "utility": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "ostream": "cpp"
     }
 }
