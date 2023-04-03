@@ -200,5 +200,11 @@ int main()
     cout<<"------------"<<endl;
     remove_last(head, tail);
     traverse(head);
+    cout<<"------------"<<endl;
+    remove_first(head);
+    traverse(head);
+    cout<<"------------"<<endl;
+    insertAtIndex(head,4,15);
+    traverse(head);
     return 0;
 }
