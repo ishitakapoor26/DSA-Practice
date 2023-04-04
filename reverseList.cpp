@@ -58,18 +58,32 @@ Node* findAtIndex(Node* &head, int index){
 }
 
 // Approach 2
-void reverseLL(Node* &head){
-    int li=0;
-    int ri= size(head)-1;
-    while (li<ri)
-    {
-        int temp= findAtIndex(head,li)->data;
-        findAtIndex(head,li)->data=findAtIndex(head,ri)->data;
-        findAtIndex(head,ri)->data=temp;
-        li++;
-        ri--;
-    }
+// void reverseLL(Node* &head){
+//     int li=0;
+//     int ri= size(head)-1;
+//     while (li<ri)
+//     {
+//         int temp= findAtIndex(head,li)->data;
+//         findAtIndex(head,li)->data=findAtIndex(head,ri)->data;
+//         findAtIndex(head,ri)->data=temp;
+//         li++;
+//         ri--;
+//     }
     
+// }
+
+// Approach 3 : Pointer Iterative
+void reverseLL(Node* &head){
+    Node* temp=NULL;
+    Node* current=head;
+    Node* prev=NULL;
+    while(current!=NULL){
+        temp=current->next;
+        current->next=prev;
+        prev=current;
+        current=temp;
+    }
+    head=prev;
 }
 
 void traverse(Node *&head)
