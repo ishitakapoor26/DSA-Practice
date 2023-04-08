@@ -66,26 +66,14 @@ public:
 
     Node *kth_element(int k)
     {
-        Node *temp = NULL;
+        Node *temp = head;
         Node *ptr = head;
-        int i;
-        while (ptr->next != NULL)
-        {
-            i=0;
-            if (temp == NULL)
-            {
-                temp = head;
-            }
-            else
-            {
-                temp = temp->next;
-                ptr=temp;
-            }
-            while (i < k - 1)
-            {
-                ptr = ptr->next;
-                i++;
-            }
+        for(int i=0;i<k;i++){
+            ptr=ptr->next;
+        }
+        while(ptr!=NULL){
+            ptr=ptr->next;
+            temp=temp->next;
         }
         return temp;
     }
@@ -101,7 +89,8 @@ int main()
     ele.push(30);
     ele.push(40);
     ele.push(50);
+    ele.traverse();
     Node* temp=ele.kth_element(k);
-    cout<<temp->data;
+    cout<<"Answer is "<<temp->data;
     return 0;
 }
