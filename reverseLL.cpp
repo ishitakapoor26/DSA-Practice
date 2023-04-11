@@ -111,6 +111,7 @@ void Reverse(Node *&head, Node *&tail)
         Reverse(head->next, tail);
         if (head == tail)
         {
+            return;
         }
         else
         {
@@ -122,14 +123,14 @@ void Reverse(Node *&head, Node *&tail)
 void displayReverse(Node *&head, Node *&tail)
 {
 
-    Reverse(head->next, tail);
+    Reverse(head, tail);
     head->next = NULL;
     Node *temp = head;
     head = tail;
     tail = temp;
-    cout << tail->data;
-    cout<<head->data;
-    // traverse(head);
+    cout<<head->data<<endl;
+    cout << tail->data<<endl;
+    traverse(head);
 }
 
 int main()
@@ -141,6 +142,7 @@ int main()
     push(head, tail, 3);
     push(head, tail, 4);
     push(head, tail, 5);
+    traverse(head);
     displayReverse(head, tail);
     return 0;
 }
