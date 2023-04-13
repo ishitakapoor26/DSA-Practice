@@ -4,6 +4,9 @@
         "cmath": "cpp",
         "utility": "cpp",
         "xstring": "cpp",
-        "ostream": "cpp"
-    }
+        "ostream": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
