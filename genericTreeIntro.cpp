@@ -36,6 +36,7 @@ Node* constructor(vector<int> arr, int n){
 
 void display(Node* node){
     cout<<node->data<<"-> ";
+    // for each implementation
     for(Node *child: node->children){
         cout<<child->data<<", ";
     }
@@ -43,6 +44,16 @@ void display(Node* node){
     for(Node *child: node->children){
         display(child);
     }
+}
+
+int size(Node* node){
+    int s=0;
+    for(Node *child: node->children){
+        int cs= size(child);
+        s+= cs;
+    }
+    s+=1;
+    return s;
 }
 
 int main(){
