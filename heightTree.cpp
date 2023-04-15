@@ -11,20 +11,19 @@ struct Node
 
 Node* newNode(int val){
     Node* node= new Node;
-    node->data=val;
+    node->data= val;
     return node;
 }
 
-int maxNode(Node* node){
-    int maximum= INT_MIN;
+int heightTree(Node* node){
+    int ht=-1;
     for(Node* child: node->children){
-        int cm = maxNode(child);
-        maximum= max(cm,maximum);
+        int hm= heightTree(child);
+        ht= max(hm,ht);
     }
-    maximum=max(node->data,maximum);
-    return maximum;
+    ht+=1;
+    return ht;
 }
-
 
 int main(){
     Node *root = newNode(10);
@@ -38,6 +37,5 @@ int main(){
     (root->children[3]->children).push_back(newNode(7));
     (root->children[3]->children).push_back(newNode(8));
     (root->children[3]->children).push_back(newNode(9));
-    cout<<maxNode(root);
-    return 0;
+    cout<<heightTree(root);
 }
