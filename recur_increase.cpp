@@ -10,6 +10,7 @@ void print_increasing(int n){
     }
 }
 
+
 int main(){
     print_increasing(5);
     return 0;
