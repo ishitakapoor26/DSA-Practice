@@ -1,6 +1,6 @@
-#include<iostream>
-#include<vector>
-#include<queue>
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 
 struct Node
@@ -9,32 +9,84 @@ struct Node
     vector<Node *> children;
 };
 
-Node* newNode(int val){
-    Node* node= new Node;
-    node->data=val;
+Node *newNode(int val)
+{
+    Node *node = new Node;
+    node->data = val;
     return node;
 }
 
-void levelOrderLinewise(Node* root){
-    queue<Node* > mq,cq;
-    mq.push(root);
-    while(mq.size()>0){
-        root= mq.front();
-        mq.pop();
-        cout<<root->data<<" ";
-        for(Node* child: root->children){
-            cq.push(child);
+// void levelOrderLinewise(Node* root){
+//     queue<Node* > mq,cq;
+//     mq.push(root);
+//     while(mq.size()>0){
+//         root= mq.front();
+//         mq.pop();
+//         cout<<root->data<<" ";
+//         for(Node* child: root->children){
+//             cq.push(child);
+//         }
+//         if(mq.size()==0){
+//             mq=cq;
+//             cq= {};
+//             cout<<endl;
+//         }
+//     }
+// }
+
+// Approach 2: Delimiter approach
+
+// void levelOrderLinewise(Node *node)
+// {
+//     queue<Node *> q;
+//     q.push(node);
+//     q.push(NULL);
+//     while (q.size() > 0)
+//     {
+//         node = q.front();
+//         q.pop();
+//         if (node != NULL)
+//         {
+//             cout << node->data << " ";
+//             for (Node *child : node->children)
+//             {
+//                 q.push(child);
+//             }
+//         }else{
+//             if(q.size()>0){
+//                 q.push(NULL);
+//                 cout<<endl;
+//             }
+//         }
+//     }
+// }
+
+// Approach 3: Counter Approach
+
+void levelOrderLinewise(Node *node)
+{
+    queue<Node *> q;
+    q.push(node);
+    while (q.size() > 0)
+    {
+        int s = q.size();
+        for (int i = 0; i < s; i++)
+        {
+            node = q.front();
+            q.pop();
+            cout << node->data << " ";
+            for (Node *child : node->children)
+            {
+                q.push(child);
+            }
         }
-        if(mq.size()==0){
-            mq=cq;
-            cq= {};
-            cout<<endl;
-        }
+        cout << endl;
     }
 }
 
-int main(){
-    Node* root= newNode(10);
+int main()
+{
+    Node *root = newNode(10);
     root->children.push_back(newNode(20));
     root->children.push_back(newNode(30));
     root->children.push_back(newNode(40));
