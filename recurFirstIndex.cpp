@@ -24,8 +24,40 @@ int lastIndex(int n, vector<int> vec, int idx)
             return idx;
         else
             return -1;
-    }else{
+    }
+    else
+    {
         return lastidx;
+    }
+}
+
+// Approach 1
+// void allIndices(int n, vector<int> vec, int idx){
+//     if (idx == vec.size())
+//         return;
+//     allIndices(n, vec, idx+1);
+//     if(vec[idx]==n) cout<<idx<<endl;
+// }
+
+// Approach 2
+
+vector<int> allIndices(int n, vector<int> vec, int idx, int fsf)
+{
+    if (idx == vec.size())
+    {
+        vector<int> v(fsf);
+        return v;
+    }
+    if (vec[idx] == n)
+    {
+        vector<int> v = allIndices(n, vec, idx + 1, fsf + 1);
+        v[fsf] = idx;
+        return v;
+    }
+    else
+    {
+        vector<int> v = allIndices(n, vec, idx + 1, fsf);
+        return v;
     }
 }
 
@@ -42,6 +74,10 @@ int main()
     vec.push_back(8);
     vec.push_back(1);
     cout << firstIndex(n, vec, 0) << endl;
-    cout << lastIndex(n, vec, 0);
+    cout << lastIndex(n, vec, 0) << endl;
+    vector<int> v = allIndices(n, vec, 0, 0);
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<endl;
+    }
     return 0;
 }
