@@ -15,22 +15,21 @@ Node *newNode(int val)
     return node;
 }
 
-bool find(Node *node, int data)
-{
-    if (node->data == data)
-    {
-        return true;
+vector<int> nodeToRoot(Node* node, int data){
+    if(node->data==data){
+        vector<int> vec;
+        vec.push_back(node->data);
+        return vec;
     }
-    for (Node *child : node->children)
-    {
-        bool fic = find(child, data);
-        if (fic)
-        {
-            cout<<node->data<<" -> ";
-            return true;
+    for(Node* child: node->children){
+        vector<int> ptc= nodeToRoot(child, data);
+        if(ptc.size()>0){
+            ptc.push_back(node->data);
+            return ptc;
         }
     }
-    return false;
+    vector<int> r;
+    return r;
 }
 
 int main()
@@ -47,6 +46,9 @@ int main()
     root->children[1]->children[1]->children.push_back(newNode(110));
     root->children[1]->children[1]->children.push_back(newNode(120));
     root->children[2]->children.push_back(newNode(100));
-    cout << find(root, 80);
+    vector<int> result= nodeToRoot(root, 110);
+    for(int i=0;i<result.size();i++){
+        cout<<result[i]<<" -> ";
+    }
     return 0;
 }
