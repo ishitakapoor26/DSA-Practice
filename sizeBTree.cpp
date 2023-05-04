@@ -48,7 +48,7 @@ int height(Node *node)
     int lh = 0, rh = 0, fh = 0;
     if (node == NULL)
     {
-        return 0;
+        return -1;
     }
     lh += height(node->left);
     rh += height(node->right);
