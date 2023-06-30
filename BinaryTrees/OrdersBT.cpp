@@ -1,6 +1,13 @@
 #include<iostream>
+#include<utility>
 #include<stack>
+#include<string>
 using namespace std;
+
+// Using pair class method:
+// 1-> pre, state increase, move towards left
+// 2-> in, state increase, move towards right
+// 3-> post, state increase, pop
 
 class Node{
     public:
@@ -39,6 +46,35 @@ void preOreder(Node* root){
     }
 }
 
+void iterativePrePostInTraversal(Node* node){
+    stack<pair<Node* , int>> st;
+    st.push(make_pair(node, 1));
+    string pre="";
+    string post="";
+    string in="";
+    while(st.size()!=0){
+        if(st.top().second==1){
+            pre+= to_string(st.top().first->data) + " ";
+            st.top().second++;
+            if(st.top().first->left !=nullptr){
+                st.push(make_pair(st.top().first->left, 1));
+            }
+        }else if(st.top().second==2){
+            in+= to_string(st.top().first->data) + " ";
+            st.top().second++;
+            if(st.top().first->right !=nullptr){
+                st.push(make_pair(st.top().first->right, 1));
+            }
+        }else{
+            post+= to_string(st.top().first->data) + " ";
+            st.pop();
+        }
+    }
+    cout<<pre<<endl;
+    cout<<in<<endl;
+    cout<<post<<endl;
+}
+
 void display(Node* root){
     if(root==NULL){
         return;
@@ -59,7 +95,8 @@ int main(){
     cout<<"Original Tree: "<<endl;
     display(root);
     cout<<endl;
-    cout<<"Tree after Pre Order Iterative Traversal: "<<endl;
-    preOreder(root);
+    // cout<<"Tree after Pre Order Iterative Traversal: "<<endl;
+    // preOreder(root);
+    iterativePrePostInTraversal(root);
     return 0;
 }
