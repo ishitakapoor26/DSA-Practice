@@ -30,37 +30,25 @@ void display(int **arr, int n)
 
 void rotateArray(int **arr, int n)
 {
-    int **arr2 = new int *[n];
     for (int i = 0; i < n; i++)
     {
-        arr2[i] = new int[n];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
+        for (int j = i; j < n; j++)
         {
-            arr2[i][j] = arr[j][i];
+            int temp = arr[i][j];
+            arr[i][j] = arr[j][i];
+            arr[j][i] = temp;
         }
     }
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < n / 2; j++)
         {
-            arr[i][j] = arr2[i][j];
+            int temp = arr[i][j];
+            arr[i][j] = arr[i][n - 1 - j];
+            arr[i][n - 1 - j] = temp;
         }
     }
-    for(int i=0;i<n;i++){
-        delete[] arr2[i];
-    }
-    delete[] arr2;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n/2;j++){
-            int temp= arr[i][j];
-            arr[i][j]= arr[i][n-1-j];
-            arr[i][n-1-j]=temp;
-        }
-    }
-    display(arr,n);
+    display(arr, n);
 }
 
 int main()
