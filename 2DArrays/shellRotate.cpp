@@ -54,7 +54,7 @@ void fillShellFromOned(int **arr, int s, int r, int c, int *oned)
         idx++;
     }
     // tw
-    for (int j = maxr - 1, i = minr; j >= minc + 1; i--)
+    for (int j = maxc - 1, i = minr; j >= minc + 1; j--)
     {
         arr[i][j]= oned[idx];
         idx++;
@@ -87,7 +87,7 @@ void fillOnedFromShell(int **arr, int s, int r, int c, int *oned)
         idx++;
     }
     // tw
-    for (int j = maxr - 1, i = minr; j >= minc + 1; i--)
+    for (int j = maxc - 1, i = minr; j >= minc + 1; j--)
     {
         oned[idx] = arr[i][j];
         idx++;
@@ -128,7 +128,7 @@ void shellRotate(int **arr, int r, int c, int s, int n)
     maxr = maxc = r - s;
     oned = new int[2 * (maxr - minr + maxc - minc)];
     fillOnedFromShell(arr, s, r, c, oned);
-    rotate(oned, n, r * c);
+    rotate(oned, n, 2*(maxr-minr+maxc-minc));
     fillShellFromOned(arr, s, r, c, oned);
 }
 
