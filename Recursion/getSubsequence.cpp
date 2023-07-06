@@ -29,6 +29,19 @@ vector<string> gss(string s)
 
 int main()
 {
-
+    string s;
+    cin>>s;
+    vector<string> ans= gss(s);
+    int count=0;
+    cout<<"[";
+    for(string str: ans){
+        if(count!=ans.size()-1){
+            cout<<str<<" , ";
+        }else{
+            cout<<str;
+        }
+        count++;
+    }
+    cout<<"]";
     return 0;
 }
