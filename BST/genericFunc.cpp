@@ -16,6 +16,9 @@ public:
 
 int sizeTree(Node *root)
 {
+    if(root==nullptr){
+        return 0;
+    }
     int lcount=0, rcount=0;
     lcount+= sizeTree(root->left);
     rcount+= sizeTree(root->right);
@@ -56,6 +59,9 @@ int minTree(Node *root)
 
 bool findTree(Node *root, int n)
 {
+    if(root==nullptr){
+        return false;
+    }
     bool res;
     if (root->data == n)
     {
@@ -98,10 +104,12 @@ int main()
     int size = sizeTree(root);
     if(find){
         cout<<n<<" is found!"<<endl;
+    }else{
+        cout<<"Not found!"<<endl;
     }
-    // cout<<"Size is: "<<size<<endl;
-    // cout<<"Max: "<<max<<endl;
-    // cout<<"Min: "<<min<<endl;
-    // cout<<"Sum: "<<sum<<endl;
+    cout<<"Size is: "<<size<<endl;
+    cout<<"Max: "<<max<<endl;
+    cout<<"Min: "<<min<<endl;
+    cout<<"Sum: "<<sum<<endl;
     return 0;
 }
