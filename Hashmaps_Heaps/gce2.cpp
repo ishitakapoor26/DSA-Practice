@@ -17,7 +17,6 @@ int main()
         cin >> arr2[i];
     }
     unordered_map<int, int> map1;
-    unordered_map<int, int> map2;
     for (int i = 0; i < n1; i++)
     {
         if (map1.find(arr1[i]) == map1.end())
@@ -29,26 +28,10 @@ int main()
             map1[arr1[i]] += 1;
         }
     }
-    for (int i = 0; i < n2; i++)
-    {
-        if (map2.find(arr2[i]) == map2.end())
-        {
-            map2[arr2[i]] = 1;
-        }
-        else
-        {
-            map2[arr2[i]] += 1;
-        }
-    }
-    for (pair<int, int> p : map2)
-    {
-        if (!(map1.find(p.first) == map1.end()))
-        {
-            int key = p.second > map1.at(p.first) ? map1.at(p.first) : p.second;
-            for (int i = 0; i < key; i++)
-            {
-                cout << p.first << " , ";
-            }
+    for(int i=0;i<n2;i++){
+        if(!(map1.find(arr2[i])==map1.end()) && map1.at(arr2[i])>0){
+            map1.at(arr2[i])-=1;
+            cout<<arr2[i]<<" , ";
         }
     }
     return 0;
